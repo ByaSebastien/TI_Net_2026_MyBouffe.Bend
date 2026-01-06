@@ -1,0 +1,6 @@
+@TI_Net_2026_MyBouffe.Bend.API_HostAddress = http://localhost:5133
+
+GET {{TI_Net_2026_MyBouffe.Bend.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

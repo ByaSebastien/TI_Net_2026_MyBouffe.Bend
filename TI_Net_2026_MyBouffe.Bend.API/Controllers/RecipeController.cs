@@ -1,22 +1,40 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TI_Net_2026_MyBouffe.Bend.API.Models;
 using TI_Net_2026_MyBouffe.Bend.BLL.Entities;
 using TI_Net_2026_MyBouffe.Bend.BLL.Services.Interfaces;
 
 namespace TI_Net_2026_MyBouffe.Bend.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class RecipeController(IRecipeService recipeService) : ControllerBase
     {
 
         [HttpPost]
-        public async Task<ActionResult<Recipe>> Save([FromBody] RecipeFormDto form) // Utiliser DTO
+        public async Task<IActionResult> Save([FromBody] RecipeFormDto form, [FromQuery] string lang) // Utiliser DTO
         {
-            var savedRecipe = await recipeService.Save(new Recipe { NameFr = form.name });
+            var savedRecipe = await recipeService.Save( lang == "fr" ?
+                new Recipe
+                {
+                    NameFr = form.Name,
+                    DescriptionFr = form.Description,
+                    StepsFr = form.Steps,
+                    CompositionFr = form.Composition,
+                    ServingSize = form.ServingSize,
+                }
+                : 
+                new Recipe
+                {
+                    NameEng = form.Name,
+                    DescriptionEng = form.Description,
+                    StepsEng = form.Steps,
+                    CompositionEng = form.Composition,
+                    ServingSize = form.ServingSize,
+                },
+                lang
+            );
 
-            return Ok(savedRecipe);
+            return Created();
         }
     }
 }

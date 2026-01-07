@@ -12,7 +12,7 @@ using TI_Net_2026_MyBouffe.Bend.DAL.Contexts;
 namespace TI_Net_2026_MyBouffe.Bend.DAL.Migrations
 {
     [DbContext(typeof(MyBouffeContext))]
-    [Migration("20260106085359_init")]
+    [Migration("20260107102030_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -33,6 +33,14 @@ namespace TI_Net_2026_MyBouffe.Bend.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<string>("AudioEng")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AudioFr")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Calories")
                         .HasColumnType("int");
 
@@ -49,6 +57,10 @@ namespace TI_Net_2026_MyBouffe.Bend.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DescriptionFr")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

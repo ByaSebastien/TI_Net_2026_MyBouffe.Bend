@@ -2,6 +2,7 @@
 using TI_Net_2026_MyBouffe.Bend.BLL.Interfaces;
 using TI_Net_2026_MyBouffe.Bend.BLL.Services;
 using TI_Net_2026_MyBouffe.Bend.BLL.Services.Interfaces;
+using TI_Net_2026_MyBouffe.Bend.DAL.Repositories;
 using TI_Net_2026_MyBouffe.Bend.DAL.Services;
 
 namespace TI_Net_2026_MyBouffe.Bend.API.DependencyInjections
@@ -20,6 +21,7 @@ namespace TI_Net_2026_MyBouffe.Bend.API.DependencyInjections
                 },
             });
 
+            services.AddScoped<IRecipeRepository, RecipeRepository>();
             services.AddScoped<IOpenAIService, OpenAIServices>();
             services.AddScoped<IRecipeService, RecipeService>();
         }

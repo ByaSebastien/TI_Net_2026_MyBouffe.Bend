@@ -17,6 +17,8 @@ builder.Services.AddDbContext<MyBouffeContext>(o =>
 
 builder.Services.AddOpenAI(builder.Configuration["OpenAI:ApiKey"] ?? throw new Exception("Missing config"));
 
+builder.Services.AddCors(options => options.AddDefaultPolicy(p => p.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod()));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,7 +28,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseStaticFiles();
+
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 

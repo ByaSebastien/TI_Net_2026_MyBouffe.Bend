@@ -45,6 +45,9 @@ namespace TI_Net_2026_MyBouffe.Bend.DAL.Migrations
                     CompositionEng = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Calories = table.Column<int>(type: "int", nullable: false),
                     ServingSize = table.Column<int>(type: "int", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AudioFr = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AudioEng = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>

@@ -6,6 +6,11 @@ namespace TI_Net_2026_MyBouffe.Bend.DAL.Repositories
 {
     public class RecipeRepository(MyBouffeContext context) : IRecipeRepository
     {
+        public List<Recipe> Get()
+        {
+            return [.. context.Recipes];
+        }
+
         public void Save(Recipe recipe)
         {
             context.Recipes.Add(recipe);

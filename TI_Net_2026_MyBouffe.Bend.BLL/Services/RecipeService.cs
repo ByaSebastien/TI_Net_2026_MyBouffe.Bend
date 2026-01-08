@@ -8,6 +8,11 @@ namespace TI_Net_2026_MyBouffe.Bend.BLL.Services
 {
     public class RecipeService(IOpenAIService openAIService, IRecipeRepository recipeRepository) : IRecipeService
     {
+        public async Task<List<Recipe>> GetAsync()
+        {
+            return recipeRepository.Get();
+        }
+
         public async Task<Recipe> Save(Recipe recipe, string lang)
         {
 

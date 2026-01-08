@@ -10,6 +10,12 @@ namespace TI_Net_2026_MyBouffe.Bend.API.Controllers
     public class RecipeController(IRecipeService recipeService) : ControllerBase
     {
 
+        [HttpGet]
+        public async Task<ActionResult<List<RecipeIndexDto>>> Get()
+        {
+            return (await recipeService.GetAsync()).Select(r => new RecipeIndexDto(r.Id,r.NameFr,r.Calories)).ToList();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Save([FromBody] RecipeFormDto form, [FromQuery] string lang) // Utiliser DTO
         {
